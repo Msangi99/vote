@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div class="w-64 bg-gray-900 text-white flex flex-col shadow-2xl fixed top-0 left-0 h-full z-50">
+<div class="w-64 bg-gray-900 text-white min-h-screen flex flex-col shadow-2xl">
     <!-- Logo / Brand -->
     <div class="p-5 border-b border-gray-700">
         <img src="{{ asset('WhatsApp Image 2025-09-16 at 19.31.12_62e45b1b.jpg') }}" alt="" class="h-30 w-full">
@@ -43,100 +43,88 @@
         </a>
 
         <!-- Leagues -->
-        @can('view-leagues')
-            <a href="/leagues"
-                class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
-            {{ request()->is('leagues*') ? 'bg-green-800 text-white border-l-4 border-green-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 mr-3 transition-colors
-                {{ request()->is('leagues*') ? 'text-green-300' : 'text-gray-400 group-hover:text-green-300' }}"
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-                Leagues
-            </a>
-        @endcan
+        <a href="/leagues"
+            class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
+           {{ request()->is('leagues*') ? 'bg-green-800 text-white border-l-4 border-green-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-3 transition-colors
+               {{ request()->is('leagues*') ? 'text-green-300' : 'text-gray-400 group-hover:text-green-300' }}"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            Leagues
+        </a>
 
         <!-- Categories -->
-        @can('view-categories')
-            <a href="/categories"
-                class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
-            {{ request()->is('categories*') ? 'bg-yellow-800 text-white border-l-4 border-yellow-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 mr-3 transition-colors
-                {{ request()->is('categories*') ? 'text-yellow-300' : 'text-gray-400 group-hover:text-yellow-300' }}"
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                </svg>
-                Categories
-            </a>
-        @endcan
+        <a href="/categories"
+            class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
+           {{ request()->is('categories*') ? 'bg-yellow-800 text-white border-l-4 border-yellow-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-3 transition-colors
+               {{ request()->is('categories*') ? 'text-yellow-300' : 'text-gray-400 group-hover:text-yellow-300' }}"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            Categories
+        </a>
 
         <!-- Teams -->
-        @can('view-teams')
-            <a href="/teams"
-                class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
-            {{ request()->is('teams*') ? 'bg-blue-800 text-white border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 mr-3 transition-colors
-                {{ request()->is('teams*') ? 'text-blue-300' : 'text-gray-400 group-hover:text-blue-300' }}"
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                Teams
-            </a>
-        @endcan
+        <a href="/teams"
+            class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
+           {{ request()->is('teams*') ? 'bg-blue-800 text-white border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-3 transition-colors
+               {{ request()->is('teams*') ? 'text-blue-300' : 'text-gray-400 group-hover:text-blue-300' }}"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            Teams
+        </a>
 
         <!-- Players -->
-        @can('view-players')
-            <a href="/players"
-                class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
-            {{ request()->is('players*') ? 'bg-purple-800 text-white border-l-4 border-purple-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 mr-3 transition-colors
-                {{ request()->is('players*') ? 'text-purple-300' : 'text-gray-400 group-hover:text-purple-300' }}"
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                Players
-            </a>
-        @endcan
+        <a href="/players"
+            class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
+           {{ request()->is('players*') ? 'bg-purple-800 text-white border-l-4 border-purple-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-3 transition-colors
+               {{ request()->is('players*') ? 'text-purple-300' : 'text-gray-400 group-hover:text-purple-300' }}"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            Players
+        </a>
 
         <!-- Matches -->
-        @can('view-matches')
-            <a href="/matches"
-                class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
-            {{ request()->is('matches*') ? 'bg-red-800 text-white border-l-4 border-red-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 mr-3 transition-colors
-                {{ request()->is('matches*') ? 'text-red-300' : 'text-gray-400 group-hover:text-red-300' }}"
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.165-1.275-.47-1.827m-8.53 1.827V20M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.165-1.275.47-1.827m0 0A9.002 9.002 0 0112 5a9.002 9.002 0 014.53 11.173M12 12h.01" />
-                </svg>
-                Matches
-            </a>
-        @endcan
+        <a href="/matches"
+            class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
+           {{ request()->is('matches*') ? 'bg-red-800 text-white border-l-4 border-red-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-3 transition-colors
+               {{ request()->is('matches*') ? 'text-red-300' : 'text-gray-400 group-hover:text-red-300' }}"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.165-1.275-.47-1.827m-8.53 1.827V20M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.165-1.275.47-1.827m0 0A9.002 9.002 0 0112 5a9.002 9.002 0 014.53 11.173M12 12h.01" />
+            </svg>
+            Matches
+        </a>
 
         <!-- Track Votes -->
-        @can('view-track-votes')
-            <a href="{{ route('votes.track') }}"
-                class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
-            {{ $currentRoute === 'votes.track' ? 'bg-pink-800 text-white border-l-4 border-pink-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 mr-3 transition-colors
-                {{ $currentRoute === 'votes.track' ? 'text-pink-300' : 'text-gray-400 group-hover:text-pink-300' }}"
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Track Votes
-            </a>
-        @endcan
+        <a href="{{ route('votes.track') }}"
+            class="flex items-center px-4 py-3 rounded-xl transition-all duration-200 group
+           {{ $currentRoute === 'votes.track' ? 'bg-pink-800 text-white border-l-4 border-pink-400' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-3 transition-colors
+               {{ $currentRoute === 'votes.track' ? 'text-pink-300' : 'text-gray-400 group-hover:text-pink-300' }}"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Track Votes
+        </a>
 
         <form action="{{ route('logout') }}" method="POST" class="inline">
             @csrf
