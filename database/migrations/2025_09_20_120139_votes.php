@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('match_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('player_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('team_id')->nullable()->constrained()->onDelete('set null');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('match_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('player_id')->nullable();
+            $table->unsignedBigInteger('team_id')->nullable();
             $table->string('coach_name')->nullable();
             $table->integer('price')->nullable();
             $table->timestamps();
