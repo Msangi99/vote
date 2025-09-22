@@ -132,11 +132,17 @@ class VoteController extends Controller
             ->orderBy('matches.match_date', 'asc')
             ->get();
 
+        $bestCoachCategory = Category::where('name', 'best coach')->first();
         $coachVotesQuery = Vote::query();
         $coachVotesQuery->with(['match.homeTeam', 'match.awayTeam']);
         $coachVotesQuery->join('teams', 'votes.team_id', '=', 'teams.id');
         $coachVotesQuery->join('matches', 'votes.match_id', '=', 'matches.id');
-        $coachVotesQuery->where('votes.category_id', 3); // Assuming category_id 3 is 'best coach'
+        if ($bestCoachCategory) {
+            $coachVotesQuery->where('votes.category_id', $bestCoachCategory->id);
+        } else {
+            // If 'best coach' category doesn't exist, ensure no coach votes are fetched
+            $coachVotesQuery->whereRaw('1 = 0');
+        }
 
         if ($startDate && $endDate) {
             $coachVotesQuery->whereBetween('matches.match_date', [Carbon::parse($startDate)->startOfDay(), Carbon::parse($endDate)->endOfDay()]);
@@ -175,6 +181,13 @@ class VoteController extends Controller
             }
             return $category;
         });
+
+        // return [
+        //     'categorizedVotes' => $categorizedVotes,
+        //     'categories' => $categories,
+        //     'leagues' => $leagues,
+        //     'teams' => $teams,
+        // ];
 
         return view('vote.track', compact('categorizedVotes', 'categories', 'leagues', 'teams'));
     }
