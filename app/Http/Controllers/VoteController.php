@@ -285,7 +285,7 @@ class VoteController extends Controller
             'currency' => 'TZS',
             'reference' => 'ORDER123',
             'callback_url' => route('clickpesa.callback'),
-        ]);
+        ]); 
 
 
         //return redirect()->route('guest.vote.form')->with('success', 'Your votes have been recorded!');
