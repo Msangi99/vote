@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Metch;
 use App\Models\Category;
+use App\Models\League;
+use App\Models\Metch;
 use App\Models\Player;
 use App\Models\Team;
 use App\Models\Vote;
-use App\Models\League;
 use Carbon\Carbon;
+use EmilKitua\ClickPesa\ClickPesa;
+use Illuminate\Http\Request;
 
 class VoteController extends Controller
 {
@@ -291,5 +292,10 @@ class VoteController extends Controller
         }
 
         return redirect()->route('guest.vote.form')->with('success', 'Your votes have been recorded!');
+    }
+
+    public function clickPesaHandle(Request $request, ClickPesa $clickPesa)
+    {
+        return $request->all();
     }
 }
