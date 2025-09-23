@@ -8,12 +8,19 @@ use App\Models\Metch;
 use App\Models\Player;
 use App\Models\Team;
 use App\Models\Vote;
-use Carbon\Carbon;
-use EmilKitua\ClickPesa\ClickPesa;
+use App\Services\ClickPesaService;
+use Carbon\Carbon; 
 use Illuminate\Http\Request;
 
 class VoteController extends Controller
 {
+    protected $clickPesa;
+
+    public function __construct(ClickPesaService $clickPesa)
+    {
+        $this->clickPesa = $clickPesa;
+    }
+
     public function index()
     {
         $today = Carbon::today();
@@ -230,7 +237,7 @@ class VoteController extends Controller
         return view('vote.guest_vote', compact('matches', 'categories', 'leagues'));
     }
 
-    public function storeGuestVote(Request $request, ClickPesa $clickPesa)
+    public function storeGuestVote(Request $request)
     {
         //return $request->all();
         $request->validate([
@@ -279,19 +286,20 @@ class VoteController extends Controller
             }
         }
 
-        return $clickPesa->initiateUSSD([
-            'phone' => '255628042409',
-            'amount' => 1000,
-            'currency' => 'TZS',
-            'reference' => 'ORDER123',
-            'callback_url' => route('clickpesa.callback'),
-        ]); 
+       $data = $this->clickPesa->initiateUSSD(
+            "255628042409",
+            1000,
+            'TZS',
+            'ORDER-' . time()
+        );
+
+        return response()->json($data);
 
 
         //return redirect()->route('guest.vote.form')->with('success', 'Your votes have been recorded!');
     }
 
-    public function clickPesaHandle(Request $request, ClickPesa $clickPesa)
+    public function clickPesaHandle(Request $request)
     {
         return $request->all();
     }
