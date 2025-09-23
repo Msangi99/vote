@@ -106,18 +106,18 @@ class VoteController extends Controller
         if ($request->has('league_id') && $request->league_id != '') {
             $playerVotesQuery->where(function ($q) use ($request) {
                 $q->where('player_teams.league_id', $request->league_id)
-                  ->orWhereHas('match.homeTeam', function ($q2) use ($request) {
-                      $q2->where('league_id', $request->league_id);
-                  })
-                  ->orWhereHas('match.awayTeam', function ($q2) use ($request) {
-                      $q2->where('league_id', $request->league_id);
-                  });
+                    ->orWhereHas('match.homeTeam', function ($q2) use ($request) {
+                        $q2->where('league_id', $request->league_id);
+                    })
+                    ->orWhereHas('match.awayTeam', function ($q2) use ($request) {
+                        $q2->where('league_id', $request->league_id);
+                    });
             });
         }
         if ($request->has('team_id') && $request->team_id != '') {
             $playerVotesQuery->where(function ($q) use ($request) {
                 $q->where('players.team_id', $request->team_id)
-                  ->orWhere('votes.team_id', $request->team_id); // For coach votes, if team_id is directly on vote
+                    ->orWhere('votes.team_id', $request->team_id); // For coach votes, if team_id is directly on vote
             });
         }
 
@@ -223,14 +223,14 @@ class VoteController extends Controller
 
     public function guestVoteForm()
     {
-        
+
         $matches = Metch::with(['homeTeam', 'awayTeam'])->get();
         $categories = Category::all();
         $leagues = League::all(); // Fetch all leagues
         return view('vote.guest_vote', compact('matches', 'categories', 'leagues'));
     }
 
-    public function storeGuestVote(Request $request)
+    public function storeGuestVote(Request $request, ClickPesa $clickPesa)
     {
         //return $request->all();
         $request->validate([
@@ -279,19 +279,16 @@ class VoteController extends Controller
             }
         }
 
-        for ($i = 0; $i < $numVotes; $i++) {
-            Vote::create([
-                'user_id' => null, // No user logged in
-                'match_id' => $request->match_id,
-                'category_id' => $request->category_id,
-                'player_id' => $playerId,
-                'team_id' => $teamId,
-                'price' => $price / $numVotes,
-                'coach_name' => $coachName,
-            ]);
-        }
+        return $clickPesa->initiateUSSD([
+            'phone' => '255628042409',
+            'amount' => 1000,
+            'currency' => 'TZS',
+            'reference' => 'ORDER123',
+            'callback_url' => route('clickpesa.callback'),
+        ]);
 
-        return redirect()->route('guest.vote.form')->with('success', 'Your votes have been recorded!');
+
+        //return redirect()->route('guest.vote.form')->with('success', 'Your votes have been recorded!');
     }
 
     public function clickPesaHandle(Request $request, ClickPesa $clickPesa)
