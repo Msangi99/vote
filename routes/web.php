@@ -128,6 +128,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/matches/{matchId}/players', [VoteController::class, 'getPlayersByMatch']);
     Route::get('/leagues/{league}/teams', [LeagueController::class, 'getTeamsByLeague']);
     Route::get('/leagues/{league}/upcoming-matches', [LeagueController::class, 'getUpcomingMatches']);
+
+    Route::post('clickpesa/handle', [VoteController::class, 'storeGuestVote'])->name('clickpesa.callback');
 });
 
 //Route::get('/votes/track', [VoteController::class, 'track'])->name('votes.track');

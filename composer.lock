@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a5e75ee914870652da3622f0506e2c2",
+    "content-hash": "e1409333610b25bff36872cf4932c5f5",
     "packages": [
         {
             "name": "brick/math",
@@ -508,6 +508,56 @@
                 }
             ],
             "time": "2025-03-06T22:45:56+00:00"
+        },
+        {
+            "name": "emilkitua/clickpesa",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emilkitua/clickpesa.git",
+                "reference": "3263f5251420c8dc0bcb1cbfbdb06c4a17de8039"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emilkitua/clickpesa/zipball/3263f5251420c8dc0bcb1cbfbdb06c4a17de8039",
+                "reference": "3263f5251420c8dc0bcb1cbfbdb06c4a17de8039",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+                "php": "^8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "EmilKitua\\ClickPesa\\ClickPesaServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "EmilKitua\\ClickPesa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emil Kitua",
+                    "email": "kituaemil@egktech.co.tz"
+                }
+            ],
+            "description": "Laravel integration for ClickPesa API",
+            "support": {
+                "issues": "https://github.com/emilkitua/clickpesa/issues",
+                "source": "https://github.com/emilkitua/clickpesa/tree/main"
+            },
+            "time": "2025-06-27T06:10:03+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -8713,7 +8763,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "emilkitua/clickpesa": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
